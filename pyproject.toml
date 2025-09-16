@@ -1,0 +1,84 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+name = "serena-agent"
+version = "0.1.4"
+description = "Serena - An advanced AI coding assistant and development environment"
+authors = [{ name = "Oraios AI", email = "info@oraios-ai.de" }]
+readme = "README.md"
+requires-python = ">=3.11, <3.12"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  # Core dependencies
+  "requests>=2.32.3,<3",
+  "pyright>=1.1.396,<2",
+  "overrides>=7.7.0,<8",
+  "python-dotenv>=1.0.0, <2",
+  "mcp==1.12.3",
+  "flask>=3.0.0",
+  "sensai-utils>=1.5.0",
+  "pydantic>=2.10.6",
+  "types-pyyaml>=6.0.12.20241230",
+  "pyyaml>=6.0.2",
+  "ruamel.yaml>=0.18.0",
+  "jinja2>=3.1.6",
+  "dotenv>=0.9.9",
+  "pathspec>=0.12.1",
+  "psutil>=7.0.0",
+  "docstring_parser>=0.16",
+  "joblib>=1.5.1",
+  "tqdm>=4.67.1",
+  "tiktoken>=0.9.0",
+  "anthropic>=0.54.0",
+  # Enhanced web development dependencies
+  "fastapi>=0.104.0",
+  "uvicorn>=0.24.0",
+  "websockets>=12.0",
+  "httpx>=0.25.2",
+  "rich>=13.7.0",
+  "typer>=0.9.0",
+  "watchdog>=3.0.0",
+  "jinja2-time>=0.2.0",
+  "cookiecutter>=2.5.0",
+  # Database and caching dependencies
+  "aioredis>=2.0.1",
+  "sqlalchemy>=2.0.23",
+]
+
+[project.scripts]
+serena = "serena.cli:main"
+serena-mcp = "serena.mcp:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/serena", "src/solidlsp", "src/interprompt"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/test",
+  "/README.md",
+  "/LICENSE",
+  "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.pyright]
+include = ["src", "test"]
+exclude = ["**/__pycache__", "**/node_modules"]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+reportMissingImports = true
+reportMissingTypeStubs = false
