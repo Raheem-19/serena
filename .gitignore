@@ -24,7 +24,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
+PIPFILE.lock
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -127,8 +127,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-venv-*/
-.venv_new/
 
 # Spyder project settings
 .spyderproject
@@ -157,22 +155,56 @@ cython_debug/
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be added to the global gitignore or merged into this project gitignore.  For a PyCharm
-#  project, it is recommended to exclude the entire .idea directory.
-.idea/
+#  project, it is recommended to use the following settings:
+#  https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  Uncomment the following line if you want to ignore the entire idea folder.
+#.idea/
 
 # Serena specific
-.serena_cache/
-.serena_deps/
-logs/
-public/
-.trae/
+.serena/
+*.serena
+serena_cache/
+serena_temp/
+serena_logs/
 
-# OS specific
-.DS_Store
-Thumbs.db
-
-# IDE specific
+# IDE and editor files
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Log files
+*.log
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files with sensitive data
+config/local.json
+config/secrets.json
+.secrets
+
+# Node.js (if any frontend components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
